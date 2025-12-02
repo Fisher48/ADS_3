@@ -3,12 +3,12 @@ package ru.fisher.Task1;
 public class SortLevel {
 
     public static void SelectionSortStep(int[] array, int i) {
-        if (i >= array.length) {
+        if (i >= array.length - 1) {
             return;
         }
         int minInd = i + 1;
-        for (int j = i + 1; j < array.length - 1; j++) {
-            if (array[j] < array[j + 1]) {
+        for (int j = i + 1; j < array.length; j++) {
+            if (array[j] < array[minInd]) {
                 minInd = j;
             }
         }
