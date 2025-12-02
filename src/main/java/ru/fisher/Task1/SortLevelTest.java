@@ -20,7 +20,7 @@ public class SortLevelTest {
         int[] arr = new int[]{1, -7, 12, 10, -5};
         int index = 3;
         SortLevel.SelectionSortStep(arr, index);
-        assertArrayEquals(new int[]{1, 10, 12, -7, -5}, arr);
+        assertArrayEquals(new int[]{1, -7, 12, -5, 10}, arr);
     }
 
     @Test

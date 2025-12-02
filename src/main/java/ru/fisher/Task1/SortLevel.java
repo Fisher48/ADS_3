@@ -6,8 +6,8 @@ public class SortLevel {
         if (i >= array.length) {
             return;
         }
-        int minInd = 0;
-        for (int j = 0; j < array.length - 1; j++) {
+        int minInd = i + 1;
+        for (int j = i + 1; j < array.length - 1; j++) {
             if (array[j] < array[j + 1]) {
                 minInd = j;
             }
