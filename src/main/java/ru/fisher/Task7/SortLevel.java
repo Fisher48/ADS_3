@@ -15,7 +15,7 @@ public class SortLevel {
            positions.add(N);
            return positions;
        }
-       else if (N < k) {
+       if (N < k) {
            L = N + 1;
            positions.add(L);
            positions.add(R);
