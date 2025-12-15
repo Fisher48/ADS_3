@@ -2,7 +2,7 @@ package ru.fisher.Task9;
 
 
 public class HeapSort {
-    Heap HeapObject;
+    public Heap HeapObject;
 
     public HeapSort(int[] array) {
         HeapObject = new Heap();
