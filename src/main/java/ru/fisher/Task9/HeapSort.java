@@ -7,8 +7,14 @@ public class HeapSort {
     public HeapSort(int[] array) {
         HeapObject = new Heap();
 
+        if (array == null || array.length == 0) {
+            // Пустая куча
+            HeapObject.MakeHeap(array, 0);
+            return;
+        }
+
         int depth = (int) (Math.log(array.length) / Math.log(2)) + 1;
-        HeapObject.MakeHeap(new int[0], depth);
+        HeapObject.MakeHeap(array, depth);
 
         for (int value : array) {
             HeapObject.Add(value);
@@ -24,83 +30,63 @@ public class HeapSort {
 class Heap {
 
     public int[] HeapArray;
+    public int size;
 
     public Heap() {
         HeapArray = null;
+        size = 0;
     }
 
     public void MakeHeap(int[] a, int depth) {
-        int heapSize = (1 << (depth + 1)) - 1;
+        int heapSize = (int) Math.pow(2, depth + 1) - 1;
         HeapArray = new int[heapSize];
-
-        // Копируем элементы
-        for (int i = 0; i < a.length && i < heapSize; i++) {
-            HeapArray[i] = a[i];
-        }
-
-        // Строим кучу
-        for (int i = heapSize / 2; i >= 0; i--) {
-            HeapifyDown(i);
-        }
+        size = 0;
     }
 
     public int GetMax() {
-        if (HeapArray == null || HeapArray.length == 0 || HeapArray[0] == 0) {
+        if (size == 0) {
             return -1;
         }
 
         int max = HeapArray[0];
-        int lastIndex = HeapArray.length - 1;
-
-        while (lastIndex >= 0 && HeapArray[lastIndex] == 0) {
-            lastIndex--;
-        }
-
-        if (lastIndex < 0) {
-            HeapArray[0] = 0;
-            return max;
-        }
-
-        HeapArray[0] = HeapArray[lastIndex];
-        HeapArray[lastIndex] = 0;
-        HeapifyDown(0);
+        size--;
+        HeapArray[0] = HeapArray[size];
+        HeapArray[size] = 0;
+        siftDown(0);
 
         return max;
     }
 
     public boolean Add(int key) {
-        int i = 0;
-        for (; i < HeapArray.length && HeapArray[i] != 0; i++) {}
-
-        if (i >= HeapArray.length) {
-            return false;
+        if (size >= HeapArray.length) {
+            return false; // куча заполнена
         }
-
-        HeapArray[i] = key;
-        HeapifyUp(i);
+        HeapArray[size] = key;
+        siftUp(size);
+        size++;
         return true;
     }
 
-    private void HeapifyDown(int i) {
+    private void siftDown(int i) {
         int largest = i;
         int left = 2 * i + 1;
         int right = 2 * i + 2;
 
-        if (left < HeapArray.length && HeapArray[left] > HeapArray[largest]) {
+        if (left < size && HeapArray[left] > HeapArray[largest]) {
             largest = left;
         }
 
-        if (right < HeapArray.length && HeapArray[right] > HeapArray[largest]) {
+        if (right < size && HeapArray[right] > HeapArray[largest]) {
             largest = right;
         }
 
         if (largest != i) {
             swap(i, largest);
-            HeapifyDown(largest);
+            siftDown(largest);
         }
     }
 
-    private void HeapifyUp(int i) {
+    private void siftUp(int i) {
         while (i > 0) {
             int parent = (i - 1) / 2;
             if (HeapArray[i] <= HeapArray[parent]) {
