@@ -87,7 +87,7 @@ class Heap {
     }
 
     private void siftUp(int i) {
-        while (i > 0) {
+        for ( ; i > 0; ) {
             int parent = (i - 1) / 2;
             if (HeapArray[i] <= HeapArray[parent]) {
                 break;
@@ -104,3 +104,5 @@ class Heap {
     }
 
 }
+
+
