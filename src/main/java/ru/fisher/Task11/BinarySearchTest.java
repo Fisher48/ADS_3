@@ -12,8 +12,6 @@ public class BinarySearchTest {
         int N = 10;
         BinarySearch binarySearch = new BinarySearch(array);
         binarySearch.Step(N);
-        assertEquals(0, binarySearch.GetResult());
-        binarySearch.Step(N);
         assertEquals(1, binarySearch.GetResult());
     }
 
@@ -22,8 +20,6 @@ public class BinarySearchTest {
         int[] array = new int[]{1, 5, 8, 10, 20};
         int N = 0;
         BinarySearch binarySearch = new BinarySearch(array);
-        binarySearch.Step(N);
-        assertEquals(0, binarySearch.GetResult());
         binarySearch.Step(N);
         assertEquals(-1, binarySearch.GetResult());
     }
@@ -45,9 +41,7 @@ public class BinarySearchTest {
         binarySearch.Step(N);
         assertEquals(0, binarySearch.GetResult());
         binarySearch.Step(N);
-        assertEquals(0, binarySearch.GetResult());
-        binarySearch.Step(N);
-        assertEquals(0, binarySearch.GetResult());
+        assertEquals(1, binarySearch.GetResult());
         binarySearch.Step(N);
         assertEquals(1, binarySearch.GetResult());
     }
@@ -57,8 +51,6 @@ public class BinarySearchTest {
         int[] array = new int[]{0,1,2,3,4,5,6,7,8,9,10};
         int N = 0;
         BinarySearch binarySearch = new BinarySearch(array);
-        binarySearch.Step(N);
-        assertEquals(0, binarySearch.GetResult());
         binarySearch.Step(N);
         assertEquals(0, binarySearch.GetResult());
         binarySearch.Step(N);
@@ -88,10 +80,6 @@ public class BinarySearchTest {
         int[] array = new int[]{123,234,345,456,678,789};
         int N = 234;
         BinarySearch binarySearch = new BinarySearch(array);
-        binarySearch.Step(N);
-        assertEquals(0, binarySearch.GetResult());
-        binarySearch.Step(N);
-        assertEquals(0, binarySearch.GetResult());
         binarySearch.Step(N);
         assertEquals(1, binarySearch.GetResult());
         binarySearch.Step(N);

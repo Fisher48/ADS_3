@@ -41,8 +41,17 @@ public class BinarySearch {
             Right = mid - 1; // исключаем правую половину
         }
 
+        // Проверка завершения
         if (Left > Right) {
             findVal = -1;
+        }
+        if (Left == Right) {
+            // Остался один элемент
+            findVal = (array[Left] == N) ? 1 : -1;
+        }
+        if (Right - Left == 1) {
+            // Осталось два элемента
+            findVal = (array[Left] == N || array[Right] == N) ? 1 : -1;
         }
 
     }
